@@ -9,8 +9,9 @@
   --shell-outline: #666;
   --specs-frame: #222;
   --shadow-color: hsla(0, 0%, 10%, 0.5);
-  --size: 50;
-  --unit: calc((var(--size) / 769) * 1vmin);
+  --size: 20;
+  --bound-size: 400;
+  --unit: calc((var(--size) / var(--bound-size)) * 1vmin);
 }
 
 body {
@@ -18,11 +19,17 @@ body {
   min-height: 100vh;
 }
 
+.box {
+  margin: auto auto;
+  height: calc(var(--unit) * var(--bound-size) * 2);
+  width: calc(var(--unit) * var(--bound-size) * 2);
+}
+
 img,
 .egg {
   height: calc(769 * var(--unit));
   width: calc(742 * var(--unit));
-  position: fixed;
+  position: relative;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
