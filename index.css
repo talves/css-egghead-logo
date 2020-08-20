@@ -3,6 +3,7 @@
 *:after {
   box-sizing: border-box;
 }
+
 :root {
   --bg: #606060;
   --shell-bg: #ffd500;
@@ -11,9 +12,10 @@
   --shell-outline: #666;
   --specs-frame: #222;
   --shadow-color: hsla(0, 0%, 10%, 0.5);
-  --size: 40;
-  --bound-size: 400;
-  --unit: calc((var(--size) / var(--bound-size)) * 1vmin);
+  --bound-ratio: 0.6; /* percentage */
+  --unit: calc(1vmin * var(--bound-ratio));
+  --size: calc(var(--unit) * 100);
+  --specs-border: calc(6 * var(--unit));
 }
 
 body {
@@ -23,15 +25,15 @@ body {
 
 .box {
   margin: auto auto;
-  height: calc(var(--unit) * var(--bound-size) * 2);
-  width: calc(var(--unit) * var(--bound-size) * 2);
+  height: var(--size);
+  width: var(--size);
 }
 
 img,
 .egg {
   background-color: var(--shell-bg);
-  height: calc(var(--bound-size) * 2 * var(--unit));
-  width: calc(var(--bound-size) * 2 * var(--unit));
+  height: var(--size);
+  width: var(--size);
   position: relative;
   top: 50%;
   left: 50%;
@@ -72,7 +74,7 @@ img,
 
 .shell__piece {
   background-color: var(--shell);
-  border: calc(26 * var(--unit)) solid var(--shell-outline);
+  border: calc(var(--specs-border)*0.6) solid var(--shell-outline);
   position: absolute;
   left: 50%;
   transform: translate(-50%, 0);
@@ -88,7 +90,7 @@ img,
 }
 
 .specs__lens {
-  border: calc(44 * var(--unit)) solid var(--specs-frame);
+  border: var(--specs-border) solid var(--specs-frame);
   width: 46%;
   height: 94%;
   top: 3%;
@@ -98,10 +100,10 @@ img,
 }
 
 .specs__lens--shadow {
-  box-shadow: calc(-10 * var(--unit)) calc(25 * var(--unit))
-      calc(15 * var(--unit)) var(--shadow-color),
-    0 calc(25 * var(--unit)) calc(15 * var(--unit)) var(--shadow-color) inset;
-  clip-path: polygon(50% 0, 100% 0, 100% 120%, 16% 120%, 18% 100%);
+  box-shadow: calc(-0.2 * var(--specs-border)) calc(0.5 * var(--specs-border))
+    calc(0.4 * var(--specs-border)) var(--shadow-color),
+    0 calc(0.7 * var(--specs-border)) calc(0.5 * var(--specs-border)) var(--shadow-color) inset;
+  clip-path: polygon(42% 0, 100% 0, 100% 120%, 16% 120%, 18% 100%);
 }
 
 .specs__lens--right {
@@ -117,7 +119,7 @@ img,
   left: 50%;
   transform: translate(-50%, 0);
   border-radius: 50%;
-  border: calc(52 * var(--unit)) solid var(--specs-frame);
+  border: var(--specs-border) solid var(--specs-frame);
   clip-path: inset(0 20% 60% 20%);
 }
 
@@ -128,7 +130,7 @@ img,
   position: absolute;
   left: 50%;
   transform: translate(-50%, 0);
-  top: 36%;
+  top: 38%;
   clip-path: polygon(
     0 0,
     22% 55%,
